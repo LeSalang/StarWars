@@ -1,4 +1,4 @@
-package com.lesa.starwars.ui.theme
+package com.lesa.uikit.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

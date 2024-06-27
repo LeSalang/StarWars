@@ -1,4 +1,4 @@
-package com.lesa.starwars.ui.theme
+package com.lesa.uikit.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

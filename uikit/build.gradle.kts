@@ -1,22 +1,14 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
-    namespace = "com.lesa.starwars"
+    namespace = "com.lesa.uikit"
     compileSdk = libs.versions.androidSdk.compile.get().toInt()
 
     defaultConfig {
-        applicationId = "com.lesa.starwars"
         minSdk = libs.versions.androidSdk.min.get().toInt()
-        targetSdk = libs.versions.androidSdk.target.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
-
-        vectorDrawables {
-            useSupportLibrary = true
-        }
     }
 
     buildTypes {
@@ -31,25 +23,20 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        compose = true
-    }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
+    buildFeatures {
+        compose = true
     }
 }
 
 dependencies {
     // Base:
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-
-    // Modules:
-    implementation(project(":uikit"))
+    api(platform(libs.compose.bom))
+    api(libs.compose.material3)
+    api(libs.compose.ui.graphics)
+    api(libs.compose.ui.tooling.preview)
+    debugApi(libs.compose.ui.tooling)
 }

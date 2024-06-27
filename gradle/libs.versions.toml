@@ -28,7 +28,6 @@ compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling
     # Detekt:
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
 
-
 [plugins]
     # Base:
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -36,3 +35,4 @@ jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = 
 
     # Detekt:
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
+android-library = { id = "com.android.library", version.ref = "agp" }

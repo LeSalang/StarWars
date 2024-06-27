@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Star Wars"
 include(":app")
+include(":uikit")
