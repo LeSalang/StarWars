@@ -2,16 +2,21 @@
     # Base:
 activityCompose = "1.9.0"
 agp = "8.4.1"
-composeBom = "2023.08.00"
-coreKtx = "1.13.1"
-kotlin = "1.9.0"
-lifecycleRuntimeKtx = "2.8.2"
 androidSdk-compile = "34"
 androidSdk-min = "24"
 androidSdk-target = "33"
+composeBom = "2023.08.00"
+coreKtx = "1.13.1"
+json = "1.6.3"
+kotlin = "1.9.0"
+lifecycleRuntimeKtx = "2.8.2"
 
-    # Detekt
+    # Detekt:
 detekt = "1.23.3"
+
+    # Retrofit:
+okhttp = "4.12.0"
+retrofit = "2.11.0"
 
 [libraries]
     # Base:
@@ -24,15 +29,24 @@ compose-ui = { group = "androidx.compose.ui", name = "ui" }
 compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "json" }
 
     # Detekt:
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
 
+    # Retrofit:
+okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+okhttp3-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+retrofit2-converter-kotlinx-serialization = { group = "com.squareup.retrofit2", name = "converter-kotlinx-serialization", version.ref = "retrofit" }
+retrofit2-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+
 [plugins]
     # Base:
 android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
     # Detekt:
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
-android-library = { id = "com.android.library", version.ref = "agp" }
