@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.kapt)
 }
 
 android {
@@ -13,6 +15,8 @@ android {
         targetSdk = libs.versions.androidSdk.target.get().toInt()
         versionCode = 1
         versionName = "1.0"
+
+        buildConfigField("String", "SW_API_BASE_URL", "\"https://swapi.dev/api/\"")
 
         vectorDrawables {
             useSupportLibrary = true
@@ -32,6 +36,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
     composeOptions {
@@ -50,6 +55,12 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
 
+    // Dependency Injection
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+
     // Modules:
+    implementation(project(":api"))
     implementation(project(":uikit"))
+    implementation(project(":data"))
 }

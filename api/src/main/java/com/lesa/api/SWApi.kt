@@ -19,14 +19,12 @@ interface SWApi {
 
 fun createSWApi(
     baseUrl: String,
-    apiKey: String,
     okHttpClient: OkHttpClient? = null,
 ): SWApi {
     val json = Json { ignoreUnknownKeys = true }
 
     return retrofit(
         baseUrl = baseUrl,
-        apiKey = apiKey,
         okHttpClient = okHttpClient,
         json = json
     ).create()
@@ -34,14 +32,13 @@ fun createSWApi(
 
 private fun retrofit(
     baseUrl: String,
-    apiKey: String,
     okHttpClient: OkHttpClient?,
     json: Json = Json
 ): Retrofit {
     val jsonConverter: Converter.Factory = json.asConverterFactory("application/json".toMediaType())
 
     val modifiedOkHttpClient = (okHttpClient?.newBuilder() ?: OkHttpClient.Builder())
-        .addInterceptor(SWApiKeyInterceptor(apiKey = apiKey))
+        .addInterceptor(SWApiKeyInterceptor())
         .build()
 
     return Retrofit.Builder()
