@@ -63,4 +63,5 @@ dependencies {
     implementation(project(":api"))
     implementation(project(":uikit"))
     implementation(project(":data"))
+    implementation(project(":database"))
 }

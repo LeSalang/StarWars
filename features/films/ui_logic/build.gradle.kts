@@ -1,10 +1,12 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.kapt)
+    alias(libs.plugins.hilt.android)
 }
 
 android {
-    namespace = "com.lesa.data"
+    namespace = "com.lesa.features.films.ui_logic"
     compileSdk = libs.versions.androidSdk.compile.get().toInt()
 
     defaultConfig {
@@ -26,11 +28,15 @@ android {
 }
 
 dependencies {
+    // Base:
     implementation(libs.androidx.core.ktx)
-    implementation(libs.javax.inject)
-    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    // DI:
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
     // Modules:
-    implementation(project(":api"))
-    implementation(project(":database"))
+    implementation(project(":data"))
 }

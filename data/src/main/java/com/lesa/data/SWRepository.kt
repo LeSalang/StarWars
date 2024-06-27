@@ -12,6 +12,11 @@ class SWRepositoryImpl @Inject constructor(
     private val api: SWApi
 ) : SWRepository {
     override suspend fun getAllFilms(): List<Film> {
-        TODO("Not yet implemented")
+        return api
+            .getFilms()
+            .results
+            .map {
+                it.toFilm()
+            }
     }
 }

@@ -11,7 +11,7 @@ internal fun FilmDTO.toFilm(): Film {
         episodeId = episodeId,
         director = director,
         producer = producer,
-        releaseDate = parseReleaseDate(releaseDate),
+        releaseYear = parseReleaseDate(releaseDate)?.year,
         characters = characters,
         planets = planets
     )

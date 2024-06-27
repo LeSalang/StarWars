@@ -10,11 +10,13 @@ import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.create
 import retrofit2.http.GET
 
-// [API Documentation](https://swapi.dev/documentation)
+/**
+* [API Documentation](https://swapi.dev/documentation)
+*/
 interface SWApi {
 
-    @GET(GET_ALL_FILMS_REQUEST)
-    suspend fun getAllFilms(): FilmsResponseDTO
+    @GET(GET_FILMS_REQUEST)
+    suspend fun getFilms(): FilmsResponseDTO
 }
 
 fun createSWApi(
@@ -48,4 +50,4 @@ private fun retrofit(
         .build()
 }
 
-const val GET_ALL_FILMS_REQUEST = "films"
+const val GET_FILMS_REQUEST = "films"
