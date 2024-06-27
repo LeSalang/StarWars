@@ -1,12 +1,17 @@
 package com.lesa.data
 
 import com.lesa.api.SWApi
+import com.lesa.data.models.Film
 import javax.inject.Inject
 
-interface SWRepository {}
+interface SWRepository {
+    suspend fun getAllFilms(): List<Film>
+}
 
 class SWRepositoryImpl @Inject constructor(
     private val api: SWApi
-): SWRepository {
-
+) : SWRepository {
+    override suspend fun getAllFilms(): List<Film> {
+        TODO("Not yet implemented")
+    }
 }
