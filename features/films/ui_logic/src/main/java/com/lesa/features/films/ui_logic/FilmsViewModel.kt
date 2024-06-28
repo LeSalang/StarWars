@@ -2,6 +2,7 @@ package com.lesa.features.films.ui_logic
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.lesa.data.map
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -18,6 +19,13 @@ class FilmsViewModel @Inject internal constructor(
         getFilmsUseCaseProvider
             .get()
             .invoke()
+            .map { requestResult ->
+                requestResult.map { filmUIList ->
+                    filmUIList.sortedBy { filmUI ->
+                        filmUI.episodeId
+                    }
+                }
+            }
             .map {
                 it.toState()
             }

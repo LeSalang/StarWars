@@ -48,7 +48,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideSWRepository(swApi: SWApi): SWRepository {
-        return SWRepositoryImpl(swApi)
+    fun provideSWRepository(swApi: SWApi, swDatabase: SWDatabase): SWRepository {
+        return SWRepositoryImpl(swApi, swDatabase)
     }
 }

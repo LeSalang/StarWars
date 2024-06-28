@@ -10,9 +10,14 @@ java {
 }
 
 dependencies {
+    // Base:
     api(libs.kotlinx.serialization.json)
-    api(libs.okhttp3.okhttp)
+    implementation(libs.kotlinx.coroutines.core)
+
+    // Network:
     api(libs.okhttp3.logging.interceptor)
-    implementation(libs.retrofit2.retrofit)
+    api(libs.okhttp3.okhttp)
+    implementation(libs.retrofit.adapters.result)
     implementation(libs.retrofit2.converter.kotlinx.serialization)
+    implementation(libs.retrofit2.retrofit)
 }

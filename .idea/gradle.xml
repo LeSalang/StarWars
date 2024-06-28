@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/database" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/films" />
+            <option value="$PROJECT_DIR$/features/films/ui" />
             <option value="$PROJECT_DIR$/features/films/ui_logic" />
             <option value="$PROJECT_DIR$/uikit" />
           </set>

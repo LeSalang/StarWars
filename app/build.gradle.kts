@@ -62,6 +62,7 @@ dependencies {
     // Modules:
     implementation(project(":api"))
     implementation(project(":uikit"))
+    implementation(project(":features:films:ui"))
     implementation(project(":data"))
     implementation(project(":database"))
 }

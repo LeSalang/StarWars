@@ -27,6 +27,11 @@ detekt = "1.23.3"
     # Network:
 okhttp = "4.12.0"
 retrofit = "2.11.0"
+retrofitAdaptersResult = "1.0.10"
+
+    # UI:
+lottieCompose = "4.0.0"
+
 
 [libraries]
     # Base:
@@ -57,11 +62,15 @@ javax-inject = { module = "javax.inject:javax.inject", version.ref = "javax-inje
     # Detekt:
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
 
+    # UI:
+lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottieCompose" }
+
     # Network:
 okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 okhttp3-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 retrofit2-converter-kotlinx-serialization = { group = "com.squareup.retrofit2", name = "converter-kotlinx-serialization", version.ref = "retrofit" }
 retrofit2-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-adapters-result = { group = "com.github.skydoves", name = "retrofit-adapters-result", version.ref = "retrofitAdaptersResult" }
 
 
 [plugins]

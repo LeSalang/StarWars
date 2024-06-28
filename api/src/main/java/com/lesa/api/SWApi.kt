@@ -9,6 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.create
 import retrofit2.http.GET
+import com.skydoves.retrofit.adapters.result.ResultCallAdapterFactory
 
 /**
 * [API Documentation](https://swapi.dev/documentation)
@@ -46,6 +47,7 @@ private fun retrofit(
     return Retrofit.Builder()
         .baseUrl(baseUrl)
         .addConverterFactory(jsonConverter)
+        .addCallAdapterFactory(ResultCallAdapterFactory.create())
         .client(modifiedOkHttpClient)
         .build()
 }
