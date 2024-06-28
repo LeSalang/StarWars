@@ -42,6 +42,10 @@ internal fun Film.toFilmDBO(): FilmDBO {
     )
 }
 
+@Suppress(
+    "TooGenericExceptionCaught",
+    "SwallowedException",
+)
 private fun parseReleaseDate(dateInISO8601: String): LocalDate? {
     return try {
         val formatter = DateTimeFormatter.ISO_DATE

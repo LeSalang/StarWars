@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 interface SWRepository {
-    suspend fun getAllFilms(): Flow<RequestResult<List<Film>>>
+    fun getAllFilms(): Flow<RequestResult<List<Film>>>
 }
 
 class SWRepositoryImpl @Inject constructor(
@@ -25,7 +25,7 @@ class SWRepositoryImpl @Inject constructor(
     private val database: SWDatabase
 ) : SWRepository {
 
-    override suspend fun getAllFilms(): Flow<RequestResult<List<Film>>> {
+    override fun getAllFilms(): Flow<RequestResult<List<Film>>> {
         val filmsFromDatabase: Flow<RequestResult<List<Film>>> = getFilmsFromDatabase()
         val filmsFromNetwork: Flow<RequestResult<List<Film>>> = getFilmsFromNetwork()
         val mergeStrategy: MergeStrategy<RequestResult<List<Film>>> = RequestResponseMergeStrategy()
@@ -33,7 +33,7 @@ class SWRepositoryImpl @Inject constructor(
         return filmsFromDatabase.combine(flow = filmsFromNetwork, mergeStrategy::merge)
     }
 
-    private suspend fun getFilmsFromNetwork(): Flow<RequestResult<List<Film>>> {
+    private fun getFilmsFromNetwork(): Flow<RequestResult<List<Film>>> {
         val apiResponse = flow {
             emit(api.getFilms())
         }.onEach { result ->
@@ -60,7 +60,7 @@ class SWRepositoryImpl @Inject constructor(
             }
     }
 
-    private suspend fun getFilmsFromDatabase(): Flow<RequestResult<List<Film>>> {
+    private fun getFilmsFromDatabase(): Flow<RequestResult<List<Film>>> {
         val dbResponse = database.filmsDao::getAll
             .asFlow()
             .map<List<FilmDBO>, RequestResult<List<FilmDBO>>> { filmDBOList ->
