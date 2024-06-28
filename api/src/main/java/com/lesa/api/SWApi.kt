@@ -16,7 +16,7 @@ import retrofit2.http.GET
 interface SWApi {
 
     @GET(GET_FILMS_REQUEST)
-    suspend fun getFilms(): FilmsResponseDTO
+    suspend fun getFilms(): Result<FilmsResponseDTO>
 }
 
 fun createSWApi(

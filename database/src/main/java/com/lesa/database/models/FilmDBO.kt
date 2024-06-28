@@ -10,7 +10,7 @@ data class FilmDBO(
     @PrimaryKey(autoGenerate = false) val episodeId: Int,
     @ColumnInfo("director") val director: String,
     @ColumnInfo("producer") val producer: String,
-    @ColumnInfo("releaseDate") val releaseDate: Int,
+    @ColumnInfo("releaseYear") val releaseYear: Int?,
     @ColumnInfo("characters") val characters: List<String>,
     @ColumnInfo("planets") val planets: List<String>,
 )
