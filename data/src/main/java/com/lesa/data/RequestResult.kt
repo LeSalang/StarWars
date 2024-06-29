@@ -1,24 +1,27 @@
 package com.lesa.data
 
-public sealed class RequestResult<out E : Any>(public open val data: E? = null) {
-    public class InProgress<E : Any>(
+sealed class RequestResult<out E : Any>(public open val data: E? = null) {
+    class InProgress<E : Any>(
         data: E? = null,
     ) : RequestResult<E>(data)
 
-    public class Success<E : Any>(
+    class Success<E : Any>(
         override val data: E,
     ) : RequestResult<E>(data)
 
-    public class Error<E : Any>(
+    class Error<E : Any>(
         data: E? = null,
-        public val error: Throwable? = null,
+        val error: Throwable? = null,
     ) : RequestResult<E>(data)
 }
 
-public fun <I : Any, O : Any> RequestResult<I>.map(mapper: (I) -> O): RequestResult<O> {
+fun <I : Any, O : Any> RequestResult<I>.map(mapper: (I) -> O): RequestResult<O> {
     return when (this) {
         is RequestResult.Success -> RequestResult.Success(mapper(data))
-        is RequestResult.Error -> RequestResult.Error(data?.let(mapper))
+        is RequestResult.Error -> RequestResult.Error(
+            data = data?.let(mapper),
+            error = error
+        )
         is RequestResult.InProgress -> RequestResult.InProgress(data?.let(mapper))
     }
 }
