@@ -32,22 +32,22 @@ android {
 }
 
 dependencies {
-    // Core
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.kotlinx.coroutines.android)
-
-    // DI
-    implementation(libs.hilt.android)
-    implementation(libs.javax.inject)
-    kapt(libs.hilt.compiler)
-
-    // UI
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    // Base:
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.core)
     implementation(libs.lottie.compose)
 
-    // Modules
+    // DI:
+    implementation(libs.hilt.android)
+    implementation(libs.javax.inject)
+    implementation(libs.androidx.hilt.navigation)
+    kapt(libs.hilt.compiler)
+
+    // Modules:
     implementation(project(":uikit"))
     implementation(project(":features:films:ui_logic"))
 }

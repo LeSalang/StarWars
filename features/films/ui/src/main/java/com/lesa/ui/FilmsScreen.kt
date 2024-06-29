@@ -1,5 +1,6 @@
 package com.lesa.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,7 +27,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
@@ -37,13 +40,21 @@ import com.lesa.features.films.ui_logic.State
 import com.lesa.features.films.ui_logic.models.FilmUI
 
 @Composable
-fun FilmsScreen(modifier: Modifier = Modifier) {
-    FilmsScreen(modifier = modifier, viewModel = viewModel())
+fun FilmsScreen(
+    navController: NavController,
+    modifier: Modifier = Modifier,
+) {
+    FilmsScreen(
+        modifier = modifier,
+        viewModel = hiltViewModel(),
+        navController = navController,
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun FilmsScreen(
+    navController: NavController,
     modifier: Modifier = Modifier,
     viewModel: FilmsViewModel
 ) {
@@ -85,7 +96,8 @@ private fun FilmsScreen(
                 ) {
                     FilmsView(
                         filmUIList = searchedFilms,
-                        modifier = Modifier
+                        modifier = Modifier,
+                        navController = navController,
                     )
                 }
             }
@@ -95,12 +107,14 @@ private fun FilmsScreen(
         FilmSScreenContent(
             currentState = currentState,
             modifier = modifier.padding(innerPadding),
+            navController = navController,
         )
     }
 }
 
 @Composable
 private fun FilmSScreenContent(
+    navController: NavController,
     currentState: State,
     modifier: Modifier = Modifier,
 ) {
@@ -110,15 +124,25 @@ private fun FilmSScreenContent(
     ) {
         when (currentState) {
             State.None -> Unit
-            is State.Error -> ErrorView(state = currentState)
-            is State.Loading -> LoadingView(state = currentState)
-            is State.Success -> FilmsView(filmUIList = currentState.films)
+            is State.Error -> ErrorView(
+                state = currentState,
+                navController = navController,
+            )
+            is State.Loading -> LoadingView(
+                state = currentState,
+                navController = navController,
+            )
+            is State.Success -> FilmsView(
+                filmUIList = currentState.films,
+                navController = navController,
+            )
         }
     }
 }
 
 @Composable
 private fun ErrorView(
+    navController: NavController,
     state: State.Error,
     modifier: Modifier = Modifier,
 ) {
@@ -129,13 +153,17 @@ private fun ErrorView(
         Text(text = state.error.toString())
         val films = state.films
         if (films != null) {
-            FilmsView(filmUIList = films)
+            FilmsView(
+                filmUIList = films,
+                navController = navController,
+            )
         }
     }
 }
 
 @Composable
 private fun LoadingView(
+    navController: NavController,
     state: State.Loading,
     modifier: Modifier = Modifier
 ) {
@@ -162,13 +190,17 @@ private fun LoadingView(
         val films = state.films
         if (films != null) {
             Text(text = "Cached data:")
-            FilmsView(filmUIList = films)
+            FilmsView(
+                filmUIList = films,
+                navController = navController,
+            )
         }
     }
 }
 
 @Composable
 private fun FilmsView(
+    navController: NavController,
     filmUIList: List<FilmUI>?,
     modifier: Modifier = Modifier,
 ) {
@@ -178,7 +210,13 @@ private fun FilmsView(
             modifier = modifier.fillMaxSize()
         ) {
             items(filmUIList) { filmUI ->
-                FilmView(filmUI)
+                FilmView(
+                    film = filmUI,
+                    navController = navController,
+                    modifier = Modifier.clickable {
+
+                    }
+                )
             }
         }
     }
@@ -186,6 +224,7 @@ private fun FilmsView(
 
 @Composable
 private fun FilmView(
+    navController: NavController,
     film: FilmUI,
     modifier: Modifier = Modifier
 ) {
