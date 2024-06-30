@@ -2,6 +2,7 @@ package com.lesa.api
 
 import com.lesa.api.models.FilmsResponseDTO
 import com.lesa.api.models.PersonDTO
+import com.lesa.api.models.PlanetDTO
 import com.skydoves.retrofit.adapters.result.ResultCallAdapterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -12,7 +13,6 @@ import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.create
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 /**
 * [API Documentation](https://swapi.dev/documentation)
@@ -26,6 +26,11 @@ interface SWApi {
     suspend fun getPerson(
         @Path("id") id: Int
     ): Result<PersonDTO>
+
+    @GET(GET_PLANET_REQUEST)
+    suspend fun getPlanet(
+        @Path("id") id: Int
+    ): Result<PlanetDTO>
 }
 
 fun createSWApi(
@@ -62,3 +67,4 @@ private fun retrofit(
 
 const val GET_FILMS_REQUEST = "films"
 const val GET_PERSON_REQUEST = "people/{id}"
+const val GET_PLANET_REQUEST = "planets/{id}"

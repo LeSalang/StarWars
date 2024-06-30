@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.lesa.database.models.FilmDBO
 
 @Dao
-interface FilmsDAO {
+interface FilmDAO {
     @Query("SELECT * FROM films")
     suspend fun getAll(): List<FilmDBO>
 

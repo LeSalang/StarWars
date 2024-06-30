@@ -7,10 +7,10 @@ import androidx.room.Query
 import com.lesa.database.models.PersonDBO
 
 @Dao
-interface PersonsDAO {
+interface PersonDAO {
     @Query("SELECT * FROM persons WHERE homeworldID in (:listID)")
-    suspend fun getAll(listID: List<Int>): List<PersonDBO>
+    suspend fun getPersons(listID: List<Int>): List<PersonDBO>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(persons: List<PersonDBO>)
+    suspend fun insertPersons(persons: List<PersonDBO>)
 }

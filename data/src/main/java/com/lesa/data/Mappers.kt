@@ -2,10 +2,13 @@ package com.lesa.data
 
 import com.lesa.api.models.FilmDTO
 import com.lesa.api.models.PersonDTO
+import com.lesa.api.models.PlanetDTO
 import com.lesa.data.models.Film
 import com.lesa.data.models.Person
+import com.lesa.data.models.Planet
 import com.lesa.database.models.FilmDBO
 import com.lesa.database.models.PersonDBO
+import com.lesa.database.models.PlanetDBO
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -72,6 +75,42 @@ internal fun Person.toPersonDBO(): PersonDBO {
         gender = gender,
         homeworldID = homeworldID,
         personID = personID
+    )
+}
+
+internal fun PlanetDTO.toPlanet(): Planet {
+    return Planet(
+        name = name,
+        diameter = diameter,
+        gravity = gravity,
+        population = population,
+        climate = climate,
+        terrain = terrain,
+        id = parseID(url)
+    )
+}
+
+internal fun PlanetDBO.toPlanet(): Planet {
+    return Planet(
+        name = name,
+        diameter = diameter,
+        gravity = gravity,
+        population = population,
+        climate = climate,
+        terrain = terrain,
+        id = id
+    )
+}
+
+internal fun Planet.toPlanetDBO(): PlanetDBO {
+    return PlanetDBO(
+        name = name,
+        diameter = diameter,
+        gravity = gravity,
+        population = population,
+        climate = climate,
+        terrain = terrain,
+        id = id
     )
 }
 

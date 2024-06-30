@@ -3,8 +3,12 @@ package com.lesa.starwars
 import android.content.Context
 import com.lesa.api.SWApi
 import com.lesa.api.createSWApi
-import com.lesa.data.SWRepository
-import com.lesa.data.SWRepositoryImpl
+import com.lesa.data.FilmRepository
+import com.lesa.data.FilmRepositoryImpl
+import com.lesa.data.PersonRepository
+import com.lesa.data.PersonRepositoryImpl
+import com.lesa.data.PlanetRepository
+import com.lesa.data.PlanetRepositoryImpl
 import com.lesa.database.SWDatabase
 import dagger.Module
 import dagger.Provides
@@ -48,7 +52,19 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideSWRepository(swApi: SWApi, swDatabase: SWDatabase): SWRepository {
-        return SWRepositoryImpl(swApi, swDatabase)
+    fun providePersonRepository(swApi: SWApi, swDatabase: SWDatabase): PersonRepository {
+        return PersonRepositoryImpl(swApi, swDatabase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFilmRepository(swApi: SWApi, swDatabase: SWDatabase): FilmRepository {
+        return FilmRepositoryImpl(swApi, swDatabase)
+    }
+
+    @Provides
+    @Singleton
+    fun providePlanetRepository(swApi: SWApi, swDatabase: SWDatabase): PlanetRepository {
+        return PlanetRepositoryImpl(swApi, swDatabase)
     }
 }
