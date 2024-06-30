@@ -11,6 +11,6 @@ data class FilmDBO(
     @ColumnInfo("director") val director: String,
     @ColumnInfo("producer") val producer: String,
     @ColumnInfo("releaseYear") val releaseYear: Int?,
-    @ColumnInfo("characters") val characters: List<String>,
+    @ColumnInfo("characters") val characterIDs: List<Int>,
     @ColumnInfo("planets") val planets: List<String>,
 )

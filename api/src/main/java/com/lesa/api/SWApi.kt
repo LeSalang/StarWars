@@ -1,6 +1,8 @@
 package com.lesa.api
 
 import com.lesa.api.models.FilmsResponseDTO
+import com.lesa.api.models.PersonDTO
+import com.skydoves.retrofit.adapters.result.ResultCallAdapterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -9,7 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.create
 import retrofit2.http.GET
-import com.skydoves.retrofit.adapters.result.ResultCallAdapterFactory
+import retrofit2.http.Query
 
 /**
 * [API Documentation](https://swapi.dev/documentation)
@@ -18,6 +20,11 @@ interface SWApi {
 
     @GET(GET_FILMS_REQUEST)
     suspend fun getFilms(): Result<FilmsResponseDTO>
+
+    @GET(GET_PERSON_REQUEST)
+    suspend fun getPerson(
+        @Query("id") id: Int
+    ): Result<PersonDTO>
 }
 
 fun createSWApi(
@@ -53,3 +60,4 @@ private fun retrofit(
 }
 
 const val GET_FILMS_REQUEST = "films"
+const val GET_PERSON_REQUEST = "people"

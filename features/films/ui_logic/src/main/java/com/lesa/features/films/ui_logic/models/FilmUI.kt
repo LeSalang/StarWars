@@ -6,6 +6,6 @@ data class FilmUI(
     val director: String,
     val producer: String,
     val releaseYear: String,
-    val characters: List<String>,
+    val characters: List<Int>,
     val planets: List<String>,
 )

@@ -5,23 +5,31 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.lesa.database.dao.FilmsDao
+import com.lesa.database.dao.FilmsDAO
+import com.lesa.database.dao.PersonsDAO
 import com.lesa.database.models.FilmDBO
+import com.lesa.database.models.PersonDBO
+import com.lesa.database.utils.ListIntConverter
 import com.lesa.database.utils.ListStringConverter
 
 class SWDatabase internal constructor(
     private val database: SWRoomDatabase
 ) {
-    val filmsDao: FilmsDao
-        get() = database.filmsDao()
+    val filmsDAO: FilmsDAO
+        get() = database.filmsDAO()
+
+    val personsDAO: PersonsDAO
+        get() = database.personsDAO()
 }
 
-@Database(entities = [FilmDBO::class], version = 1)
+@Database(entities = [FilmDBO::class, PersonDBO::class], version = 1)
 @TypeConverters(
     ListStringConverter::class,
+    ListIntConverter::class
 )
 internal abstract class SWRoomDatabase : RoomDatabase() {
-    abstract fun filmsDao(): FilmsDao
+    abstract fun filmsDAO(): FilmsDAO
+    abstract fun personsDAO(): PersonsDAO
 }
 
 fun SWDatabase(applicationContext: Context): SWDatabase {

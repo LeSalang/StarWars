@@ -6,6 +6,6 @@ data class Film(
     val director: String,
     val producer: String,
     val releaseYear: Int?,
-    val characters: List<String>,
+    val characterIDs: List<Int>,
     val planets: List<String>,
 )

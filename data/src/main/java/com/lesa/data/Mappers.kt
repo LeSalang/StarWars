@@ -1,8 +1,11 @@
 package com.lesa.data
 
 import com.lesa.api.models.FilmDTO
+import com.lesa.api.models.PersonDTO
 import com.lesa.data.models.Film
+import com.lesa.data.models.Person
 import com.lesa.database.models.FilmDBO
+import com.lesa.database.models.PersonDBO
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -13,7 +16,7 @@ internal fun FilmDTO.toFilm(): Film {
         director = director,
         producer = producer,
         releaseYear = parseReleaseDate(releaseDate)?.year,
-        characters = characters,
+        characterIDs = characters.mapNotNull { parseID(it) },
         planets = planets
     )
 }
@@ -25,7 +28,7 @@ internal fun FilmDBO.toFilm(): Film {
         director = director,
         producer = producer,
         releaseYear = releaseYear,
-        characters = characters,
+        characterIDs = characterIDs,
         planets = planets
     )
 }
@@ -37,8 +40,38 @@ internal fun Film.toFilmDBO(): FilmDBO {
         director = director,
         producer = producer,
         releaseYear = releaseYear,
-        characters = characters,
+        characterIDs = characterIDs,
         planets = planets
+    )
+}
+
+internal fun PersonDTO.toPerson(): Person {
+    return Person(
+        name = name,
+        birthYear = birthYear,
+        gender = gender,
+        homeworldID = parseID(homeworld),
+        personID = parseID(url)
+    )
+}
+
+internal fun PersonDBO.toPerson(): Person {
+    return Person(
+        name = name,
+        birthYear = birthYear,
+        gender = gender,
+        homeworldID = homeworldID,
+        personID = personID
+    )
+}
+
+internal fun Person.toPersonDBO(): PersonDBO {
+    return PersonDBO(
+        name = name,
+        birthYear = birthYear,
+        gender = gender,
+        homeworldID = homeworldID,
+        personID = personID
     )
 }
 
@@ -53,4 +86,8 @@ private fun parseReleaseDate(dateInISO8601: String): LocalDate? {
     } catch (e: Exception) {
         null
     }
+}
+
+private fun parseID(url: String): Int? {
+    return url.split('/').lastOrNull()?.toIntOrNull()
 }

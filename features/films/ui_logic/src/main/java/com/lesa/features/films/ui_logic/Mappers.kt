@@ -11,7 +11,7 @@ internal fun Film.toFilmUI(): FilmUI {
         director = director,
         producer = producer,
         releaseYear = releaseYear.toString(),
-        characters = characters,
+        characters = characterIDs,
         planets = planets
     )
 }

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "1cbc7db47fba350e45de1506b1ad5d48",
+    "identityHash": "a121b47fcd978aa8f1c961da1f145e6d",
     "entities": [
       {
         "tableName": "films",
@@ -39,7 +39,7 @@
             "notNull": false
           },
           {
-            "fieldPath": "characters",
+            "fieldPath": "characterIDs",
             "columnName": "characters",
             "affinity": "TEXT",
             "notNull": true
@@ -59,12 +59,56 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "persons",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `birthYear` TEXT NOT NULL, `gender` TEXT NOT NULL, `homeworldID` INTEGER, `personID` INTEGER, PRIMARY KEY(`personID`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "birthYear",
+            "columnName": "birthYear",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gender",
+            "columnName": "gender",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "homeworldID",
+            "columnName": "homeworldID",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "personID",
+            "columnName": "personID",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "personID"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1cbc7db47fba350e45de1506b1ad5d48')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a121b47fcd978aa8f1c961da1f145e6d')"
     ]
   }
 }
