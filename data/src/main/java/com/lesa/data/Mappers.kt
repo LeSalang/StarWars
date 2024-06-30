@@ -89,5 +89,5 @@ private fun parseReleaseDate(dateInISO8601: String): LocalDate? {
 }
 
 private fun parseID(url: String): Int? {
-    return url.split('/').lastOrNull()?.toIntOrNull()
+    return url.dropLast(1).split('/').lastOrNull()?.toIntOrNull()
 }

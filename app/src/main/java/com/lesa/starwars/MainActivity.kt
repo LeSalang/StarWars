@@ -4,9 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.lesa.navigation.NavigationItem
 import com.lesa.ui.FilmsScreen
 import com.lesa.ui.PersonsScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,18 +22,25 @@ class MainActivity : ComponentActivity() {
         setContent {
             com.lesa.uikit.theme.StarWarsTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = SCREEN_FILMS) {
-                    composable(route = SCREEN_FILMS) {
+                NavHost(navController = navController, startDestination = NavigationItem.Films.route) {
+                    composable(NavigationItem.Films.route) {
                         FilmsScreen(navController)
                     }
-                    composable(route = SCREEN_PERSONS) {
-                        PersonsScreen(navController)
+                    composable(
+                        route = NavigationItem.Persons.route,
+                        arguments = listOf(
+                            navArgument("ids") {
+                                type = NavType.StringType
+                            },
+                            navArgument("title") {
+                                type = NavType.StringType
+                            }
+                        )
+                    ) { backStackEntry ->
+                        PersonsScreen(navController = navController)
                     }
                 }
             }
         }
     }
 }
-
-const val SCREEN_FILMS = "films screen"
-const val SCREEN_PERSONS = "persons screen"

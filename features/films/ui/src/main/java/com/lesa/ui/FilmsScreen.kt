@@ -28,7 +28,6 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
@@ -38,6 +37,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.lesa.features.films.ui_logic.FilmsViewModel
 import com.lesa.features.films.ui_logic.State
 import com.lesa.features.films.ui_logic.models.FilmUI
+import com.lesa.navigation.NavigationItem
 
 @Composable
 fun FilmsScreen(
@@ -212,9 +212,13 @@ private fun FilmsView(
             items(filmUIList) { filmUI ->
                 FilmView(
                     film = filmUI,
-                    navController = navController,
                     modifier = Modifier.clickable {
-                        navController.navigate(SCREEN_PERSONS)
+                        navController.navigate(
+                            NavigationItem.Persons.createRoute(
+                                ids = filmUI.characters,
+                                title = filmUI.title,
+                            )
+                        )
                     }
                 )
             }
@@ -224,7 +228,6 @@ private fun FilmsView(
 
 @Composable
 private fun FilmView(
-    navController: NavController,
     film: FilmUI,
     modifier: Modifier = Modifier
 ) {
@@ -257,5 +260,3 @@ private fun FilmView(
         )
     }
 }
-
-const val SCREEN_PERSONS = "persons screen"

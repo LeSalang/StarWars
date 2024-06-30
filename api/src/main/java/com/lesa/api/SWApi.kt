@@ -11,6 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.create
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -23,7 +24,7 @@ interface SWApi {
 
     @GET(GET_PERSON_REQUEST)
     suspend fun getPerson(
-        @Query("id") id: Int
+        @Path("id") id: Int
     ): Result<PersonDTO>
 }
 
@@ -60,4 +61,4 @@ private fun retrofit(
 }
 
 const val GET_FILMS_REQUEST = "films"
-const val GET_PERSON_REQUEST = "people"
+const val GET_PERSON_REQUEST = "people/{id}"

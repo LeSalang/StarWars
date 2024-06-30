@@ -67,4 +67,5 @@ dependencies {
     implementation(project(":features:persons:ui"))
     implementation(project(":data"))
     implementation(project(":database"))
+    implementation(project(":navigation"))
 }

@@ -50,4 +50,5 @@ dependencies {
     // Modules:
     implementation(project(":uikit"))
     implementation(project(":features:persons:ui_logic"))
+    implementation(project(":navigation"))
 }

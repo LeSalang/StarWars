@@ -50,4 +50,5 @@ dependencies {
     // Modules:
     implementation(project(":uikit"))
     implementation(project(":features:films:ui_logic"))
+    implementation(project(":navigation"))
 }

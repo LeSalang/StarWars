@@ -7,7 +7,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -28,7 +32,6 @@ import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.lesa.ui_logic.PersonsViewModel
 import com.lesa.ui_logic.State
-import com.lesa.ui_logic.State.None.persons
 import com.lesa.ui_logic.models.PersonUI
 
 @Composable
@@ -57,7 +60,12 @@ fun PersonsScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = "Persons")
+                    Text(text = viewModel.title)
+                },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
+                    }
                 }
             )
         }
@@ -76,7 +84,9 @@ private fun PersonsScreenContent(
     currentState: State,
     modifier: Modifier = Modifier,
 ) {
-    Column {
+    Column(
+        modifier = modifier
+    ) {
         when (currentState) {
             State.None -> Unit
             is State.Error -> ErrorView(
@@ -167,7 +177,6 @@ private fun PersonsView(
             items(personUIList) { personUI ->
                 FilmView(
                     person = personUI,
-                    navController = navController,
                     modifier = Modifier.clickable {
                     }
                 )
@@ -178,7 +187,6 @@ private fun PersonsView(
 
 @Composable
 private fun FilmView(
-    navController: NavController,
     person: PersonUI,
     modifier: Modifier = Modifier
 ) {

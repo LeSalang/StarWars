@@ -1,5 +1,6 @@
 package com.lesa.features.films.ui_logic
 
+import android.util.Log
 import com.lesa.data.RequestResult
 import com.lesa.data.SWRepository
 import com.lesa.data.map
@@ -16,6 +17,7 @@ internal class GetFilmsUseCase @Inject constructor(
             .map { requestResult ->
                 requestResult.map { filmList ->
                     filmList.map { film ->
+                        Log.d("GetFilmsUseCase", "invoke: $film")
                         film.toFilmUI()
                     }
                 }

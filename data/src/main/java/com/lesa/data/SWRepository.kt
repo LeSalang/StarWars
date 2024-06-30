@@ -26,7 +26,7 @@ import javax.inject.Inject
 interface SWRepository {
     fun getAllFilms(): Flow<RequestResult<List<Film>>>
 
-    fun getPersons(listID: List<Int>): Flow<RequestResult<List<Person>>>
+    fun getPersons(idList: List<Int>): Flow<RequestResult<List<Person>>>
 }
 
 class SWRepositoryImpl @Inject constructor(
