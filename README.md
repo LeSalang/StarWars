@@ -5,7 +5,7 @@ Android app showing Star Wars data from [SWAPI](https://swapi.dev/)
 Tech stack overview:
 - Android SDK
 - [Android Jetpack](https://developer.android.com/jetpack)
-- [Kotlin](https://kotlinlang.org/))
+- [Kotlin](https://kotlinlang.org/)
 - [KotlinX Coroutines](https://github.com/Kotlin/kotlinx.coroutines)
 - [KotlinX Serialization](https://github.com/Kotlin/kotlinx.serialization)
 - [Retrofit](https://square.github.io/retrofit/) + [OkHttp](https://square.github.io/okhttp/)
