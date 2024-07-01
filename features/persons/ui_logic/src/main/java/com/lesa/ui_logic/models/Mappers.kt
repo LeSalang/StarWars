@@ -2,7 +2,7 @@ package com.lesa.ui_logic.models
 
 import com.lesa.data.RequestResult
 import com.lesa.data.models.Person
-import com.lesa.ui_logic.State
+import com.lesa.features.persons.ui_logic.State
 
 internal fun Person.toPersonUI(): PersonUI {
     return PersonUI(

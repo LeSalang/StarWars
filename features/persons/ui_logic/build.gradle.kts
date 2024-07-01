@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.lesa.ui_logic"
+    namespace = "com.lesa.features.persons.ui_logic"
     compileSdk = libs.versions.androidSdk.compile.get().toInt()
 
     defaultConfig {

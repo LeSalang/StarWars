@@ -38,5 +38,6 @@ dependencies {
     api(libs.compose.material3)
     api(libs.compose.ui.graphics)
     api(libs.compose.ui.tooling.preview)
+    api(libs.lottie.compose)
     debugApi(libs.compose.ui.tooling)
 }

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.lesa.features.persons.ui"
+    namespace = "com.lesa.features.planet.ui"
     compileSdk = libs.versions.androidSdk.compile.get().toInt()
     defaultConfig {
         minSdk = libs.versions.androidSdk.min.get().toInt()
@@ -48,6 +48,6 @@ dependencies {
 
     // Modules:
     implementation(project(":uikit"))
-    implementation(project(":features:persons:ui_logic"))
+    implementation(project(":features:planet:ui_logic"))
     implementation(project(":navigation"))
 }

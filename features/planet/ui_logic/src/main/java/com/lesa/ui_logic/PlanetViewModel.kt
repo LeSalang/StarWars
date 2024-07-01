@@ -3,8 +3,7 @@ package com.lesa.ui_logic
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lesa.features.persons.ui_logic.State
-import com.lesa.ui_logic.models.toState
+import com.lesa.features.planet.ui_logic.State
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -14,17 +13,17 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 @HiltViewModel
-class PersonsViewModel @Inject internal constructor(
-    private val getPersonsUseCaseProvider: Provider<GetPersonsUseCase>,
-    private val savedStateHandle: SavedStateHandle,
+class PlanetViewModel @Inject internal constructor(
+    getPlanetUseCaseProvider: Provider<GetPlanetUseCase>,
+    savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
-    private var personsIDs = savedStateHandle.get<String>("ids")?.split("-")?.map { it.toInt() }
+    private var id = savedStateHandle.get<Int>("id")
     var title = savedStateHandle.get<String>("title") ?: ""
 
     val state: StateFlow<State> =
-        getPersonsUseCaseProvider
+        getPlanetUseCaseProvider
             .get()
-            .invoke(idList = personsIDs ?: emptyList())
+            .invoke(id = id!!)
             .map { requestResult ->
                 requestResult.toState()
             }

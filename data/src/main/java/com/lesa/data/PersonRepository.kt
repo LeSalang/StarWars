@@ -43,7 +43,7 @@ class PersonRepositoryImpl @Inject constructor(
             if (result.isSuccess) {
                 savePersonsToDatabase(
                     result.getOrThrow()
-                        .map { personDTO ->
+                        .mapNotNull { personDTO ->
                             personDTO.toPerson()
                         }
                 )
@@ -56,7 +56,7 @@ class PersonRepositoryImpl @Inject constructor(
         return merge(start, apiResponse)
             .map { result: RequestResult<List<PersonDTO>> ->
                 result.map { personDTOList ->
-                    personDTOList.map { personDTO ->
+                    personDTOList.mapNotNull { personDTO ->
                         personDTO.toPerson()
                     }
                 }

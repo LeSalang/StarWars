@@ -6,11 +6,13 @@ plugins {
 }
 
 android {
-    namespace = "com.lesa.features.persons.ui"
+    namespace = "com.lesa.features.planet.ui_logic"
     compileSdk = libs.versions.androidSdk.compile.get().toInt()
+
     defaultConfig {
         minSdk = libs.versions.androidSdk.min.get().toInt()
     }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -20,12 +22,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -33,21 +29,14 @@ android {
 
 dependencies {
     // Base:
-    implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 
     // DI:
     implementation(libs.hilt.android)
-    implementation(libs.javax.inject)
-    implementation(libs.androidx.hilt.navigation)
     kapt(libs.hilt.compiler)
 
     // Modules:
-    implementation(project(":uikit"))
-    implementation(project(":features:persons:ui_logic"))
-    implementation(project(":navigation"))
+    implementation(project(":data"))
 }

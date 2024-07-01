@@ -65,6 +65,7 @@ dependencies {
     implementation(project(":uikit"))
     implementation(project(":features:films:ui"))
     implementation(project(":features:persons:ui"))
+    implementation(project(":features:planet:ui"))
     implementation(project(":data"))
     implementation(project(":database"))
     implementation(project(":navigation"))

@@ -1,12 +1,9 @@
 package com.lesa.ui
 
 import LoadingView
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -25,18 +22,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.lesa.features.persons.ui_logic.State
-import com.lesa.navigation.NavigationItem
-import com.lesa.ui_logic.PersonsViewModel
-import com.lesa.ui_logic.models.PersonUI
+import com.lesa.features.planet.ui_logic.State
+import com.lesa.ui_logic.PlanetViewModel
+import com.lesa.ui_logic.models.PlanetUI
 import com.lesa.uikit.theme.ErrorView
 
 @Composable
-fun PersonsScreen(
+fun PlanetScreen(
     navController: NavController,
     modifier: Modifier = Modifier,
 ) {
-    PersonsScreen(
+    PlanetScreen(
         navController = navController,
         viewModel = hiltViewModel(),
         modifier = modifier
@@ -45,9 +41,9 @@ fun PersonsScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PersonsScreen(
+fun PlanetScreen(
     navController: NavController,
-    viewModel: PersonsViewModel,
+    viewModel: PlanetViewModel,
     modifier: Modifier = Modifier,
 ) {
     val state by viewModel.state.collectAsState()
@@ -67,17 +63,15 @@ fun PersonsScreen(
             )
         }
     ) { innerPadding ->
-        PersonsScreenContent(
+        PlanetScreenContent(
             currentState = currentState,
             modifier = modifier.padding(innerPadding),
-            navController = navController,
         )
     }
 }
 
 @Composable
-private fun PersonsScreenContent(
-    navController: NavController,
+private fun PlanetScreenContent(
     currentState: State,
     modifier: Modifier = Modifier,
 ) {
@@ -86,25 +80,21 @@ private fun PersonsScreenContent(
     ) {
         when (currentState) {
             State.None -> Unit
-            is State.Error -> PersonErrorView(
+            is State.Error -> PlanetErrorView(
                 state = currentState,
-                navController = navController,
             )
-            is State.Loading -> PersonLoadingView(
+            is State.Loading -> PlanetLoadingView(
                 state = currentState,
-                navController = navController,
             )
-            is State.Success -> PersonsView(
-                personUIList = currentState.persons,
-                navController = navController,
+            is State.Success -> PlanetView(
+                planet = currentState.planet,
             )
         }
     }
 }
 
 @Composable
-private fun PersonErrorView(
-    navController: NavController,
+private fun PlanetErrorView(
     state: State.Error,
     modifier: Modifier = Modifier,
 ) {
@@ -112,20 +102,18 @@ private fun PersonErrorView(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.fillMaxSize()
     ) {
-        ErrorView(error = state.error.toString())
-        val persons = state.persons
-        if (persons != null) {
-            PersonsView(
-                personUIList = persons,
-                navController = navController,
+        ErrorView(state.error.toString())
+        val planet = state.planet
+        if (planet != null) {
+            PlanetView(
+                planet = planet,
             )
         }
     }
 }
 
 @Composable
-private fun PersonLoadingView(
-    navController: NavController,
+private fun PlanetLoadingView(
     state: State.Loading,
     modifier: Modifier = Modifier
 ) {
@@ -134,48 +122,19 @@ private fun PersonLoadingView(
         modifier = modifier.fillMaxSize()
     ) {
         LoadingView()
-        val persons = state.persons
-        if (persons != null) {
+        val planet = state.planet
+        if (planet != null) {
             Text(text = "Cached data:")
-            PersonsView(
-                personUIList = persons,
-                navController = navController,
+            PlanetView(
+                planet = planet,
             )
         }
     }
 }
 
 @Composable
-private fun PersonsView(
-    navController: NavController,
-    personUIList: List<PersonUI>?,
-    modifier: Modifier = Modifier,
-) {
-    personUIList?.let {
-        LazyColumn(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = modifier.fillMaxSize()
-        ) {
-            items(personUIList) { personUI ->
-                FilmView(
-                    person = personUI,
-                    modifier = Modifier.clickable {
-                        navController.navigate(
-                            NavigationItem.Planet.createRoute(
-                                id = personUI.homeworldID,
-                                title = "Homeworld of " + personUI.name,
-                            )
-                        )
-                    }
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun FilmView(
-    person: PersonUI,
+private fun PlanetView(
+    planet: PlanetUI,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -185,17 +144,32 @@ private fun FilmView(
             .padding(vertical = 8.dp, horizontal = 32.dp)
     ) {
         Text(
-            text = person.name,
+            text = planet.name,
             fontWeight = FontWeight.Bold,
             color = Color.Black,
         )
         Text(
-            text = person.gender,
+            text = planet.diameter,
             fontWeight = FontWeight.Normal,
             color = Color.Black,
         )
         Text(
-            text = person.birthYear,
+            text = planet.climate,
+            fontWeight = FontWeight.Normal,
+            color = Color.Black,
+        )
+        Text(
+            text = planet.gravity,
+            fontWeight = FontWeight.Normal,
+            color = Color.Black,
+        )
+        Text(
+            text = planet.terrain,
+            fontWeight = FontWeight.Normal,
+            color = Color.Black,
+        )
+        Text(
+            text = planet.population,
             fontWeight = FontWeight.Normal,
             color = Color.Black,
         )

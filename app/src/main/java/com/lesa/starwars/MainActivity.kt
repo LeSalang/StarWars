@@ -12,15 +12,19 @@ import androidx.navigation.navArgument
 import com.lesa.navigation.NavigationItem
 import com.lesa.ui.FilmsScreen
 import com.lesa.ui.PersonsScreen
+import com.lesa.ui.PlanetScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            com.lesa.uikit.theme.StarWarsTheme {
+            com.lesa.uikit.theme.StarWarsTheme(
+                darkTheme = false
+            ) {
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = NavigationItem.Films.route) {
                     composable(NavigationItem.Films.route) {
@@ -38,6 +42,16 @@ class MainActivity : ComponentActivity() {
                         )
                     ) { backStackEntry ->
                         PersonsScreen(navController = navController)
+                    }
+                    composable(
+                        route = NavigationItem.Planet.route,
+                        arguments = listOf(
+                            navArgument("id") {
+                                type = NavType.IntType
+                            }
+                        )
+                    ) {
+                        PlanetScreen(navController = navController)
                     }
                 }
             }

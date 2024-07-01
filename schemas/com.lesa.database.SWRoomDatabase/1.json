@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a121b47fcd978aa8f1c961da1f145e6d",
+    "identityHash": "8398be9eafcd354badfcd312b30ca53c",
     "entities": [
       {
         "tableName": "films",
@@ -62,7 +62,7 @@
       },
       {
         "tableName": "persons",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `birthYear` TEXT NOT NULL, `gender` TEXT NOT NULL, `homeworldID` INTEGER, `personID` INTEGER, PRIMARY KEY(`personID`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `birthYear` TEXT NOT NULL, `gender` TEXT NOT NULL, `homeworldID` INTEGER NOT NULL, `personID` INTEGER, PRIMARY KEY(`personID`))",
         "fields": [
           {
             "fieldPath": "name",
@@ -86,7 +86,7 @@
             "fieldPath": "homeworldID",
             "columnName": "homeworldID",
             "affinity": "INTEGER",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "personID",
@@ -103,12 +103,68 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "planets",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `diameter` TEXT NOT NULL, `gravity` TEXT NOT NULL, `population` TEXT NOT NULL, `climate` TEXT NOT NULL, `terrain` TEXT NOT NULL, `id` INTEGER, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "diameter",
+            "columnName": "diameter",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gravity",
+            "columnName": "gravity",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "population",
+            "columnName": "population",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "climate",
+            "columnName": "climate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "terrain",
+            "columnName": "terrain",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a121b47fcd978aa8f1c961da1f145e6d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8398be9eafcd354badfcd312b30ca53c')"
     ]
   }
 }

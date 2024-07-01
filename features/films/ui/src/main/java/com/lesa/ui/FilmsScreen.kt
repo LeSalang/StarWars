@@ -1,12 +1,12 @@
 package com.lesa.ui
 
+import LoadingView
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -29,15 +29,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.airbnb.lottie.compose.LottieAnimation
-import com.airbnb.lottie.compose.LottieCompositionSpec
-import com.airbnb.lottie.compose.LottieConstants
-import com.airbnb.lottie.compose.animateLottieCompositionAsState
-import com.airbnb.lottie.compose.rememberLottieComposition
 import com.lesa.features.films.ui_logic.FilmsViewModel
 import com.lesa.features.films.ui_logic.State
 import com.lesa.features.films.ui_logic.models.FilmUI
 import com.lesa.navigation.NavigationItem
+import com.lesa.uikit.theme.ErrorView
 
 @Composable
 fun FilmsScreen(
@@ -124,11 +120,11 @@ private fun FilmSScreenContent(
     ) {
         when (currentState) {
             State.None -> Unit
-            is State.Error -> ErrorView(
+            is State.Error -> FilmsErrorView(
                 state = currentState,
                 navController = navController,
             )
-            is State.Loading -> LoadingView(
+            is State.Loading -> FilmsLoadingView(
                 state = currentState,
                 navController = navController,
             )
@@ -141,7 +137,7 @@ private fun FilmSScreenContent(
 }
 
 @Composable
-private fun ErrorView(
+private fun FilmsErrorView(
     navController: NavController,
     state: State.Error,
     modifier: Modifier = Modifier,
@@ -150,7 +146,7 @@ private fun ErrorView(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.fillMaxSize()
     ) {
-        Text(text = state.error.toString())
+        ErrorView(error = state.error.toString())
         val films = state.films
         if (films != null) {
             FilmsView(
@@ -162,7 +158,7 @@ private fun ErrorView(
 }
 
 @Composable
-private fun LoadingView(
+private fun FilmsLoadingView(
     navController: NavController,
     state: State.Loading,
     modifier: Modifier = Modifier
@@ -171,22 +167,7 @@ private fun LoadingView(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.fillMaxSize()
     ) {
-        val weatherLoadingLottieComposition by rememberLottieComposition(
-            LottieCompositionSpec.RawRes(
-                R.raw.loading_animation
-            )
-        )
-        val loadingProgress by animateLottieCompositionAsState(
-            weatherLoadingLottieComposition,
-            iterations = LottieConstants.IterateForever,
-            isPlaying = true,
-            speed = 2f
-        )
-        LottieAnimation(
-            composition = weatherLoadingLottieComposition,
-            progress = loadingProgress,
-            modifier = modifier.sizeIn(10.dp, 10.dp, 100.dp, 100.dp)
-        )
+        LoadingView()
         val films = state.films
         if (films != null) {
             Text(text = "Cached data:")

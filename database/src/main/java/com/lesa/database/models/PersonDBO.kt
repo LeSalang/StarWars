@@ -9,6 +9,6 @@ data class PersonDBO(
     @ColumnInfo("name") val name: String,
     @ColumnInfo("birthYear") val birthYear: String,
     @ColumnInfo("gender") val gender: String,
-    @ColumnInfo("homeworldID") val homeworldID: Int?,
+    @ColumnInfo("homeworldID") val homeworldID: Int,
     @PrimaryKey(autoGenerate = false) val personID: Int?,
 )

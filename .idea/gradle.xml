@@ -20,6 +20,9 @@
             <option value="$PROJECT_DIR$/features/persons" />
             <option value="$PROJECT_DIR$/features/persons/ui" />
             <option value="$PROJECT_DIR$/features/persons/ui_logic" />
+            <option value="$PROJECT_DIR$/features/planet" />
+            <option value="$PROJECT_DIR$/features/planet/ui" />
+            <option value="$PROJECT_DIR$/features/planet/ui_logic" />
             <option value="$PROJECT_DIR$/navigation" />
             <option value="$PROJECT_DIR$/uikit" />
           </set>

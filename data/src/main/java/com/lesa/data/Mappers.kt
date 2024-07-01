@@ -48,12 +48,13 @@ internal fun Film.toFilmDBO(): FilmDBO {
     )
 }
 
-internal fun PersonDTO.toPerson(): Person {
+internal fun PersonDTO.toPerson(): Person? {
+    val homeworldId = parseID(homeworld) ?: return null
     return Person(
         name = name,
         birthYear = birthYear,
         gender = gender,
-        homeworldID = parseID(homeworld),
+        homeworldID = homeworldId,
         personID = parseID(url)
     )
 }

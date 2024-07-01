@@ -1,4 +1,4 @@
-package com.lesa.ui_logic
+package com.lesa.features.persons.ui_logic
 
 import com.lesa.ui_logic.models.PersonUI
 
