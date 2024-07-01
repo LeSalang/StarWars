@@ -38,5 +38,5 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     // Modules:
-    implementation(project(":data"))
+    implementation(project(":core:data"))
 }

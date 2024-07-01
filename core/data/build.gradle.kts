@@ -32,6 +32,6 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
 
     // Modules:
-    implementation(project(":api"))
-    implementation(project(":database"))
+    implementation(project(":core:api"))
+    implementation(project(":core:database"))
 }

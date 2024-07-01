@@ -47,7 +47,7 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     // Modules:
-    implementation(project(":uikit"))
+    implementation(project(":core:navigation"))
+    implementation(project(":core:uikit"))
     implementation(project(":features:planet:ui_logic"))
-    implementation(project(":navigation"))
 }

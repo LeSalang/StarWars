@@ -61,12 +61,12 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     // Modules:
-    implementation(project(":api"))
-    implementation(project(":uikit"))
+    implementation(project(":core:api"))
+    implementation(project(":core:data"))
+    implementation(project(":core:database"))
+    implementation(project(":core:navigation"))
+    implementation(project(":core:uikit"))
     implementation(project(":features:films:ui"))
     implementation(project(":features:persons:ui"))
     implementation(project(":features:planet:ui"))
-    implementation(project(":data"))
-    implementation(project(":database"))
-    implementation(project(":navigation"))
 }
