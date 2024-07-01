@@ -6,5 +6,6 @@
     <string name="gender">Gender: %s</string>
     <string name="homeworld_of">Homeworld of %s</string>
     <string name="name">Name: %s</string>
+    <string name="error">Error: %s</string>
 
 </resources>

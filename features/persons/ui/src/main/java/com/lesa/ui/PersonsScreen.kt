@@ -28,6 +28,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.lesa.features.persons.ui.R
 import com.lesa.features.persons.ui_logic.State
+import com.lesa.features.persons.ui_logic.State.None.persons
 import com.lesa.navigation.NavigationItem
 import com.lesa.ui_logic.PersonsViewModel
 import com.lesa.ui_logic.models.PersonUI
@@ -119,7 +120,7 @@ private fun PersonErrorView(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.fillMaxSize()
     ) {
-        ErrorView(error = state.error.toString())
+        ErrorView(error = stringResource(id = R.string.error, state.error.toString()))
         val persons = state.persons
         if (persons != null) {
             PersonsView(

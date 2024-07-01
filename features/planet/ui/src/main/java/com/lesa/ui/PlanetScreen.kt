@@ -25,6 +25,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.lesa.features.planet.ui.R
 import com.lesa.features.planet.ui_logic.State
+import com.lesa.features.planet.ui_logic.State.None.planet
 import com.lesa.ui_logic.PlanetViewModel
 import com.lesa.ui_logic.models.PlanetUI
 import com.lesa.uikit.theme.ErrorView
@@ -109,7 +110,7 @@ private fun PlanetErrorView(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.fillMaxSize()
     ) {
-        ErrorView(state.error.toString())
+        ErrorView(error = stringResource(id = R.string.error, state.error.toString()))
         val planet = state.planet
         if (planet != null) {
             PlanetView(

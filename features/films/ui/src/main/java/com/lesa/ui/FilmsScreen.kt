@@ -32,6 +32,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.lesa.features.films.ui_logic.FilmsViewModel
 import com.lesa.features.films.ui_logic.State
+import com.lesa.features.films.ui_logic.State.None.films
 import com.lesa.features.films.ui_logic.models.FilmUI
 import com.lesa.navigation.NavigationItem
 import com.lesa.uikit.theme.ErrorView
@@ -153,7 +154,7 @@ private fun FilmsErrorView(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.fillMaxSize()
     ) {
-        ErrorView(error = state.error.toString())
+        ErrorView(error = stringResource(id = R.string.error, state.error.toString()))
         val films = state.films
         if (films != null) {
             FilmsView(
