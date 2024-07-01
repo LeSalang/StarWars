@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.lesa.features.films.ui_logic"
+    namespace = "com.lesa.films"
     compileSdk = libs.versions.androidSdk.compile.get().toInt()
 
     defaultConfig {

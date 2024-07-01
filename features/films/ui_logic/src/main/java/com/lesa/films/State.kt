@@ -1,6 +1,6 @@
-package com.lesa.features.films.ui_logic
+package com.lesa.films
 
-import com.lesa.features.films.ui_logic.models.FilmUI
+import com.lesa.films.models.FilmUI
 
 sealed class State(open val films: List<FilmUI>?) {
 

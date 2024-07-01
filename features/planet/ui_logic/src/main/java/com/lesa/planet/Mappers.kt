@@ -1,9 +1,8 @@
-package com.lesa.ui_logic
+package com.lesa.planet
 
 import com.lesa.data.RequestResult
 import com.lesa.data.models.Planet
-import com.lesa.features.planet.ui_logic.State
-import com.lesa.ui_logic.models.PlanetUI
+import com.lesa.planet.models.PlanetUI
 
 internal fun Planet.toPlanetUI(): PlanetUI {
     return PlanetUI(

@@ -1,4 +1,4 @@
-package com.lesa.ui_logic.models
+package com.lesa.persons.models
 
 data class PersonUI(
     val name: String,

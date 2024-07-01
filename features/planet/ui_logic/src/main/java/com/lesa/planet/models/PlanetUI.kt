@@ -1,4 +1,4 @@
-package com.lesa.ui_logic.models
+package com.lesa.planet.models
 
 data class PlanetUI(
     val name: String,

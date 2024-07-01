@@ -1,8 +1,8 @@
-package com.lesa.ui_logic.models
+package com.lesa.persons.models
 
 import com.lesa.data.RequestResult
 import com.lesa.data.models.Person
-import com.lesa.features.persons.ui_logic.State
+import com.lesa.persons.State
 
 internal fun Person.toPersonUI(): PersonUI {
     return PersonUI(

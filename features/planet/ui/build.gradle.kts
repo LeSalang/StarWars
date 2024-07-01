@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.lesa.features.planet.ui"
+    namespace = "com.lesa.planet"
     compileSdk = libs.versions.androidSdk.compile.get().toInt()
     defaultConfig {
         minSdk = libs.versions.androidSdk.min.get().toInt()

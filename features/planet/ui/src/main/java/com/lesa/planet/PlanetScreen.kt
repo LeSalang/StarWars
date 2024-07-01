@@ -1,6 +1,7 @@
-package com.lesa.ui
+package com.lesa.planet
 
 import LoadingView
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -9,6 +10,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -23,12 +25,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.lesa.features.planet.ui.R
-import com.lesa.features.planet.ui_logic.State
-import com.lesa.features.planet.ui_logic.State.None.planet
-import com.lesa.ui_logic.PlanetViewModel
-import com.lesa.ui_logic.models.PlanetUI
-import com.lesa.uikit.theme.ErrorView
+import com.lesa.planet.models.PlanetUI
+import com.lesa.uikit.ErrorView
 
 @Composable
 fun PlanetScreen(
@@ -147,39 +145,52 @@ private fun PlanetView(
 ) {
     Column(
         horizontalAlignment = Alignment.Start,
+        verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier
             .fillMaxSize()
             .padding(vertical = 8.dp, horizontal = 32.dp)
     ) {
         Text(
-            text = stringResource(id = R.string.name, planet.name),
+            text = planet.name,
             fontWeight = FontWeight.Bold,
             color = Color.Black,
+            style = MaterialTheme.typography.titleLarge,
+
         )
         Text(
             text = stringResource(id = R.string.diameter, planet.diameter),
             fontWeight = FontWeight.Normal,
             color = Color.Black,
+            style = MaterialTheme.typography.bodyLarge,
+
         )
         Text(
             text = stringResource(id = R.string.climate, planet.climate),
             fontWeight = FontWeight.Normal,
             color = Color.Black,
+            style = MaterialTheme.typography.bodyLarge,
+
         )
         Text(
             text = stringResource(id = R.string.gravity, planet.gravity),
             fontWeight = FontWeight.Normal,
             color = Color.Black,
+            style = MaterialTheme.typography.bodyLarge,
+
         )
         Text(
             text = stringResource(id = R.string.terrain, planet.terrain),
             fontWeight = FontWeight.Normal,
             color = Color.Black,
+            style = MaterialTheme.typography.bodyLarge,
+
         )
         Text(
             text = stringResource(id = R.string.population, planet.population),
             fontWeight = FontWeight.Normal,
             color = Color.Black,
+            style = MaterialTheme.typography.bodyLarge,
+
         )
     }
 }

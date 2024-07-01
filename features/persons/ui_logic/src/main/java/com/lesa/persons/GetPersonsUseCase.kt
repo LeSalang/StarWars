@@ -1,11 +1,11 @@
-package com.lesa.ui_logic
+package com.lesa.persons
 
 import android.util.Log
 import com.lesa.data.PersonRepository
 import com.lesa.data.RequestResult
 import com.lesa.data.map
-import com.lesa.ui_logic.models.PersonUI
-import com.lesa.ui_logic.models.toPersonUI
+import com.lesa.persons.models.PersonUI
+import com.lesa.persons.models.toPersonUI
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map

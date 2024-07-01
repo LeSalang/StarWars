@@ -1,6 +1,6 @@
-package com.lesa.features.persons.ui_logic
+package com.lesa.persons
 
-import com.lesa.ui_logic.models.PersonUI
+import com.lesa.persons.models.PersonUI
 
 sealed class State(open val persons: List<PersonUI>?) {
 

@@ -1,7 +1,8 @@
-package com.lesa.ui
+package com.lesa.persons
 
 import LoadingView
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -12,6 +13,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -26,13 +28,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.lesa.features.persons.ui.R
-import com.lesa.features.persons.ui_logic.State
-import com.lesa.features.persons.ui_logic.State.None.persons
 import com.lesa.navigation.NavigationItem
-import com.lesa.ui_logic.PersonsViewModel
-import com.lesa.ui_logic.models.PersonUI
-import com.lesa.uikit.theme.ErrorView
+import com.lesa.persons.models.PersonUI
+import com.lesa.uikit.ErrorView
 
 @Composable
 fun PersonsScreen(
@@ -189,24 +187,28 @@ private fun FilmView(
 ) {
     Column(
         horizontalAlignment = Alignment.Start,
+        verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier
             .fillMaxSize()
             .padding(vertical = 8.dp, horizontal = 32.dp)
     ) {
         Text(
-            text = stringResource(id = R.string.name, person.name),
+            text = person.name,
             fontWeight = FontWeight.Bold,
             color = Color.Black,
+            style = MaterialTheme.typography.titleLarge,
         )
         Text(
             text = stringResource(id = R.string.gender, person.gender),
             fontWeight = FontWeight.Normal,
             color = Color.Black,
+            style = MaterialTheme.typography.bodyLarge,
         )
         Text(
             text = stringResource(id = R.string.birth_year, person.birthYear),
             fontWeight = FontWeight.Normal,
             color = Color.Black,
+            style = MaterialTheme.typography.bodyLarge,
         )
     }
 }

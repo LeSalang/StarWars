@@ -1,6 +1,6 @@
-package com.lesa.features.planet.ui_logic
+package com.lesa.planet
 
-import com.lesa.ui_logic.models.PlanetUI
+import com.lesa.planet.models.PlanetUI
 
 sealed class State(open val planet: PlanetUI?) {
 

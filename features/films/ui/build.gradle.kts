@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.lesa.ui"
+    namespace = "com.lesa.films"
     compileSdk = libs.versions.androidSdk.compile.get().toInt()
     defaultConfig {
         minSdk = libs.versions.androidSdk.min.get().toInt()

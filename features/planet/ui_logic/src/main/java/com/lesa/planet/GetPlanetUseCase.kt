@@ -1,9 +1,9 @@
-package com.lesa.ui_logic
+package com.lesa.planet
 
 import com.lesa.data.PlanetRepository
 import com.lesa.data.RequestResult
 import com.lesa.data.map
-import com.lesa.ui_logic.models.PlanetUI
+import com.lesa.planet.models.PlanetUI
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

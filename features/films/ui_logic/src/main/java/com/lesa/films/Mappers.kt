@@ -1,8 +1,8 @@
-package com.lesa.features.films.ui_logic
+package com.lesa.films
 
 import com.lesa.data.RequestResult
 import com.lesa.data.models.Film
-import com.lesa.features.films.ui_logic.models.FilmUI
+import com.lesa.films.models.FilmUI
 
 internal fun Film.toFilmUI(): FilmUI {
     return FilmUI(

@@ -1,4 +1,4 @@
-package com.lesa.features.films.ui_logic
+package com.lesa.films
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

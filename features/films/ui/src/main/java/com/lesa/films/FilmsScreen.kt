@@ -1,7 +1,8 @@
-package com.lesa.ui
+package com.lesa.films
 
 import LoadingView
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +16,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
@@ -30,12 +32,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.lesa.features.films.ui_logic.FilmsViewModel
-import com.lesa.features.films.ui_logic.State
-import com.lesa.features.films.ui_logic.State.None.films
-import com.lesa.features.films.ui_logic.models.FilmUI
+import com.lesa.films.models.FilmUI
 import com.lesa.navigation.NavigationItem
-import com.lesa.uikit.theme.ErrorView
+import com.lesa.uikit.ErrorView
 
 @Composable
 fun FilmsScreen(
@@ -67,7 +66,8 @@ private fun FilmsScreen(
         topBar = {
             Box(
                 contentAlignment = Alignment.TopCenter,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
             ) {
                 SearchBar(
                     query = searchText,
@@ -87,6 +87,7 @@ private fun FilmsScreen(
                             IconButton(
                                 onClick = {
                                     viewModel.isSearching.value = false
+                                    viewModel.onSearchTextChange("")
                                 }
                             ) {
                                 Icon(
@@ -96,7 +97,9 @@ private fun FilmsScreen(
                             }
                         }
                     },
-                    modifier = Modifier.align(Alignment.TopCenter)
+                    modifier = Modifier
+                        .align(Alignment.TopCenter)
+                        .fillMaxWidth(0.8f)
                 ) {
                     FilmsView(
                         filmUIList = searchedFilms,
@@ -222,6 +225,7 @@ private fun FilmView(
 ) {
     Column(
         horizontalAlignment = Alignment.Start,
+        verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier
             .fillMaxSize()
             .padding(vertical = 8.dp, horizontal = 32.dp)
@@ -230,22 +234,26 @@ private fun FilmView(
             text = film.title,
             fontWeight = FontWeight.Bold,
             color = Color.Black,
+            style = MaterialTheme.typography.titleLarge,
         )
         Text(
             text = stringResource(id = R.string.director, film.director),
             fontWeight = FontWeight.Normal,
             color = Color.Black,
+            style = MaterialTheme.typography.bodyLarge,
         )
         Text(
             text = stringResource(id = R.string.producer, film.producer),
             fontWeight = FontWeight.Normal,
             color = Color.Black,
-        )
+            style = MaterialTheme.typography.bodyLarge,
+            )
         Text(
             text = stringResource(id = R.string.release_year, film.releaseYear),
             fontWeight = FontWeight.Normal,
             fontStyle = FontStyle.Italic,
             color = Color.Red,
-        )
+            style = MaterialTheme.typography.bodyLarge,
+            )
     }
 }

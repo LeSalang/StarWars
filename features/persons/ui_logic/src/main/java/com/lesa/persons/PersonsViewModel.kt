@@ -1,10 +1,9 @@
-package com.lesa.ui_logic
+package com.lesa.persons
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lesa.features.persons.ui_logic.State
-import com.lesa.ui_logic.models.toState
+import com.lesa.persons.models.toState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

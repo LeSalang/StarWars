@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.lesa.uikit"
+    namespace = "com.lesa.navigation"
     compileSdk = libs.versions.androidSdk.compile.get().toInt()
 
     defaultConfig {

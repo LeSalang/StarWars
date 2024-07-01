@@ -9,10 +9,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.lesa.films.FilmsScreen
 import com.lesa.navigation.NavigationItem
-import com.lesa.ui.FilmsScreen
-import com.lesa.ui.PersonsScreen
-import com.lesa.ui.PlanetScreen
+import com.lesa.persons.PersonsScreen
+import com.lesa.planet.PlanetScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

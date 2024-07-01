@@ -1,4 +1,4 @@
-package com.lesa.features.films.ui_logic.models
+package com.lesa.films.models
 
 data class FilmUI(
     val title: String,
