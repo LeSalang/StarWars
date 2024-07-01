@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="back">Back</string>
+    <string name="cached_data">Cached data:</string>
+    <string name="name">Name: %s</string>
+    <string name="diameter">Diameter: %s</string>
+    <string name="climate">Climate: %s</string>
+    <string name="gravity">Gravity: %s</string>
+    <string name="terrain">Terrain: %s</string>
+    <string name="population">Population: %s</string>
+</resources>

@@ -24,6 +24,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -73,9 +74,12 @@ private fun FilmsScreen(
                     onSearch = viewModel::onSearchTextChange,
                     active = isSearching,
                     onActiveChange = { viewModel.onToogleSearch() },
-                    placeholder = { Text(text = "Search") },
+                    placeholder = { Text(text = stringResource(id = R.string.search)) },
                     leadingIcon = {
-                        Icon(imageVector = Icons.Default.Search, contentDescription = "search")
+                        Icon(
+                            imageVector = Icons.Default.Search,
+                            contentDescription = stringResource(id = R.string.search)
+                        )
                     },
                     trailingIcon = {
                         if (isSearching) {
@@ -84,7 +88,10 @@ private fun FilmsScreen(
                                     viewModel.isSearching.value = false
                                 }
                             ) {
-                                Icon(imageVector = Icons.Default.Close, contentDescription = "exit")
+                                Icon(
+                                    imageVector = Icons.Default.Close,
+                                    contentDescription = stringResource(id = R.string.exit)
+                                )
                             }
                         }
                     },
@@ -100,7 +107,7 @@ private fun FilmsScreen(
         },
         modifier = Modifier.fillMaxSize(),
     ) { innerPadding ->
-        FilmSScreenContent(
+        FilmsScreenContent(
             currentState = currentState,
             modifier = modifier.padding(innerPadding),
             navController = navController,
@@ -109,7 +116,7 @@ private fun FilmsScreen(
 }
 
 @Composable
-private fun FilmSScreenContent(
+private fun FilmsScreenContent(
     navController: NavController,
     currentState: State,
     modifier: Modifier = Modifier,
@@ -170,7 +177,7 @@ private fun FilmsLoadingView(
         LoadingView()
         val films = state.films
         if (films != null) {
-            Text(text = "Cached data:")
+            Text(text = stringResource(id = R.string.cached_data))
             FilmsView(
                 filmUIList = films,
                 navController = navController,
@@ -224,17 +231,17 @@ private fun FilmView(
             color = Color.Black,
         )
         Text(
-            text = film.director,
+            text = stringResource(id = R.string.director, film.director),
             fontWeight = FontWeight.Normal,
             color = Color.Black,
         )
         Text(
-            text = film.producer,
+            text = stringResource(id = R.string.producer, film.producer),
             fontWeight = FontWeight.Normal,
             color = Color.Black,
         )
         Text(
-            text = film.releaseYear,
+            text = stringResource(id = R.string.release_year, film.releaseYear),
             fontWeight = FontWeight.Normal,
             fontStyle = FontStyle.Italic,
             color = Color.Red,

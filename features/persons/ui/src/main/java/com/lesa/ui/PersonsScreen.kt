@@ -21,10 +21,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.lesa.features.persons.ui.R
 import com.lesa.features.persons.ui_logic.State
 import com.lesa.navigation.NavigationItem
 import com.lesa.ui_logic.PersonsViewModel
@@ -61,7 +63,12 @@ fun PersonsScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = stringResource(
+                                id = R.string.back
+                            )
+                        )
                     }
                 }
             )
@@ -136,7 +143,7 @@ private fun PersonLoadingView(
         LoadingView()
         val persons = state.persons
         if (persons != null) {
-            Text(text = "Cached data:")
+            Text(text = stringResource(id = R.string.cached_data))
             PersonsView(
                 personUIList = persons,
                 navController = navController,
@@ -157,13 +164,14 @@ private fun PersonsView(
             modifier = modifier.fillMaxSize()
         ) {
             items(personUIList) { personUI ->
+                val title = stringResource(id = R.string.homeworld_of, personUI.name)
                 FilmView(
                     person = personUI,
                     modifier = Modifier.clickable {
                         navController.navigate(
                             NavigationItem.Planet.createRoute(
                                 id = personUI.homeworldID,
-                                title = "Homeworld of " + personUI.name,
+                                title = title,
                             )
                         )
                     }
@@ -185,17 +193,17 @@ private fun FilmView(
             .padding(vertical = 8.dp, horizontal = 32.dp)
     ) {
         Text(
-            text = person.name,
+            text = stringResource(id = R.string.name, person.name),
             fontWeight = FontWeight.Bold,
             color = Color.Black,
         )
         Text(
-            text = person.gender,
+            text = stringResource(id = R.string.gender, person.gender),
             fontWeight = FontWeight.Normal,
             color = Color.Black,
         )
         Text(
-            text = person.birthYear,
+            text = stringResource(id = R.string.birth_year, person.birthYear),
             fontWeight = FontWeight.Normal,
             color = Color.Black,
         )

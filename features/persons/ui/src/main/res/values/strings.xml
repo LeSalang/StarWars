@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="back">Back</string>
+    <string name="birth_year">Birth year: %s</string>
+    <string name="cached_data">Cached data:</string>
+    <string name="gender">Gender: %s</string>
+    <string name="homeworld_of">Homeworld of %s</string>
+    <string name="name">Name: %s</string>
+
+</resources>

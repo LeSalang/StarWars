@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">Search</string>
+    <string name="exit">Exit</string>
+    <string name="cached_data">Cached data:</string>
+    <string name="director">Director: %s</string>
+    <string name="producer">Producer: %s</string>
+    <string name="release_year">Release year: %s</string>
+
+</resources>
